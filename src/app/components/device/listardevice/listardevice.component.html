@@ -1,0 +1,70 @@
+<div class="container">
+  <br />
+  <h2 style="text-align: center">Lista de Dispositivos</h2>
+  
+  <div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
+      <!--- Note that these columns can be defined in any order.
+                    The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="c1">
+        <mat-header-cell *matHeaderCellDef> Código </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.idDevice }} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="c2">
+        <mat-header-cell *matHeaderCellDef> Dispositivo </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.nameDevice }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="c3">
+        <mat-header-cell *matHeaderCellDef> Tipo </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.typeDevice }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="c4">
+        <mat-header-cell *matHeaderCellDef> Precio </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.priceDevice }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="c5">
+        <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.purchaseDateDevice }}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="c6">
+        <mat-header-cell *matHeaderCellDef>
+          Número de Mantenimientos
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.numberDeviceMaintenance }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="c7">
+        <mat-header-cell *matHeaderCellDef> Ambiente </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.room.nameRoom }}
+        </mat-cell>
+      </ng-container>
+
+    
+
+      
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+    <div *ngIf="noResults" style="color: #290b9f">No hay coincidencias.</div>
+  </div>
+</div>

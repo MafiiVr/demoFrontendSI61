@@ -1,0 +1,66 @@
+<div class="container">
+  <br />
+  <h2 style="text-align: center">Lista de Ambientes</h2>
+  <div style="text-align: right">
+    <button mat-raised-button color="primary" routerLink="/ambientes/nuevo">
+      Nuevo
+    </button>
+  </div>
+  <div  class="example-container mat-elevation-z8">
+    
+      <mat-table #table [dataSource]="dataSource">
+        <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+  
+        <!-- Position Column -->
+        <ng-container matColumnDef="c1"> 
+          <mat-header-cell *matHeaderCellDef> Código </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.idRoom }} </mat-cell>
+        </ng-container>
+  
+        <!-- Name Column -->
+        <ng-container matColumnDef="c2">
+          <mat-header-cell *matHeaderCellDef> Ambiente </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.nameRoom }} </mat-cell>
+        </ng-container>
+  
+        <!-- Weight Column -->
+        <ng-container matColumnDef="c3">
+          <mat-header-cell *matHeaderCellDef> Ubicación </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{ element.ubicationRoom }}
+          </mat-cell>
+        </ng-container>
+  
+       
+        <ng-container matColumnDef="accion01">
+          <mat-header-cell *matHeaderCellDef> Actualizar </mat-header-cell>
+          <mat-cell
+            *matCellDef="let element"
+            [routerLink]="['ediciones', element.idRoom]" >
+            <mat-icon style="color: #260591" >
+              edit
+              </mat-icon >
+          </mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="accion02">
+          <mat-header-cell *matHeaderCellDef> Eliminar </mat-header-cell>
+          <mat-cell
+            *matCellDef="let element"
+            (click)="eliminar(element.idRoom)"  >
+            <mat-icon style="color:#260591" >
+              delete
+              </mat-icon >
+          </mat-cell>
+        </ng-container>
+  
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+     <!-- <div *ngIf="noResults" style="color: #f4310a;">
+        No hay coincidencias.
+      </div>-->
+    
+  </div>
+</div>

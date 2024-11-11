@@ -1,0 +1,84 @@
+<div class="container" style="text-align: center; margin: 5%">
+    <h2>Registro de ambientes</h2>
+    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Dispositivo:</mat-label>
+        <input
+          matInput
+          placeholder="Nombre del dispositivo"
+          formControlName="hnombre"
+        />
+        <mat-error *ngIf="form.get('hnombre')?.hasError('required')"
+          >El nombre del dispositivo es obligatorio.</mat-error
+        >
+      </mat-form-field>
+  
+      <br />
+  
+      <mat-form-field class="example-full-width">
+        <mat-label>Tipo</mat-label>
+        <mat-select formControlName="htipo">
+          <mat-option *ngFor="let n of tipos" [value]="n.value">
+            {{ n.viewValue }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('htipo')?.hasError('required')"
+          >El tipo es obligatorio.</mat-error
+        >
+      </mat-form-field>
+
+      <br />
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Precio</mat-label>
+        <input
+          matInput
+          formControlName="hprecio"
+        />
+        <mat-error *ngIf="form.get('hprecio')?.hasError('required')"
+          >El precio del dispositivo es obligatorio.</mat-error
+        >
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Fecha de compra</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="hfecha">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="form.get('hfecha')?.hasError('required')"
+        >La fecha es obligatoria.</mat-error
+      >
+      </mat-form-field> 
+      <br />
+      <mat-form-field class="example-full-width">
+        <mat-label>Número de mantenimientos</mat-label>
+        <input
+          matInput
+          formControlName="hnumero"
+        />
+        <mat-error *ngIf="form.get('hnumero')?.hasError('required')"
+          >El # de mantenimientos del dispositivo es obligatorio.</mat-error
+        >
+      </mat-form-field>
+  
+      <br />
+      <mat-form-field class="example-full-width">
+        <mat-label>Ambiente</mat-label>
+        <mat-select formControlName="hambiente">
+          <mat-option *ngFor="let c of listaAmbientes" [value]="c.idRoom">
+            {{c.nameRoom}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('hambiente')?.hasError('required')"
+        >El Género es obligatorio.</mat-error>       
+     
+      </mat-form-field>
+      <br>
+      <button mat-raised-button class="custom-button">Aceptar</button>
+      <button mat-raised-button routerLink="/dispositivos" class="custom-button">Cancelar</button>
+      <p>{{ mensaje }}</p>
+    </form>
+  </div>
+  
